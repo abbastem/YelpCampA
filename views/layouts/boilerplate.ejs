@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link href="/bootstrapStyle/css/bootstrap.min.css" rel="stylesheet">
+    <title>My Web Sit</title>
+
+    <link rel="stylesheet" href="/public/stylesheets/navbar.css">
+
+    <!--map-->
+    <script src="https://cdn.maptiler.com/maptiler-sdk-js/v3.2.0/maptiler-sdk.umd.min.js"></script>
+    <link href="https://cdn.maptiler.com/maptiler-sdk-js/v3.2.0/maptiler-sdk.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="/public/stylesheets/app.css">
+
+</head>
+<body class="d-flex flex-column vh-100">
+
+<%- include('../partials/navbar')%>
+
+<main class="container mt-3">
+    <%- include('../partials/flash')%>
+
+    <%- body %>
+</main>
+
+<%- include('../partials/footer')%>
+
+<script src="/bootstrapStyle/js/bootstrap.bundle.min.js"></script>
+
+<script src="/public/javaScript/validateForms.js"></script>
+
+</body>
+</html>

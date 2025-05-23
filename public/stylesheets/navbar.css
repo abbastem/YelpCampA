@@ -1,0 +1,13 @@
+
+
+@media (max-width: 992px) {
+    #mar {
+        margin-left: 35px;
+        margin-right: 100%;
+    }
+
+    #mar2 {
+        margin-left: 50px;
+        margin-right: 100%;
+    }
+}
