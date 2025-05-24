@@ -15,7 +15,9 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const helmet = require('helmet');
 
-// const dbUrl = process.env.DB_URL2 || 'mongodb://localhost:27017/yelp-camp';
+const MongoStore = require('connect-mongo');
+
+// const dbUrl = process.env.DB_URL0 || 'mongodb://localhost:27017/yelp-camp';
 const dbUrl = 'mongodb://localhost:27017/yelp-camp';
 mongoose.connect(dbUrl);
 
@@ -38,9 +40,19 @@ app.use('/public' ,express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
 
+const secret = process.env.SECRET || 'key';
+
 const sessionOptions = {
+    store: MongoStore.create({
+        mongoUrl: dbUrl,
+        crypto: {
+            secret
+        },
+        // Session data is updated after 60 * 60 * 24 = 1 day
+        touchAfter: 60 * 60 * 24
+    }),
     name: 'session',
-    secret: 'key',
+    secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -135,6 +147,7 @@ app.use( (err, req, res, next) => {
     res.status(statusCode).render('allError', { err })
 })
 
-app.listen(3000, () => {
-    console.log('Server running on port 3000');
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
 })
